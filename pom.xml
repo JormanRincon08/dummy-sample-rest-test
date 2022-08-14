@@ -7,20 +7,24 @@
     <groupId>com.restapiexample.dummy</groupId>
     <artifactId>dummy-sample-rest-test</artifactId>
     <version>1.0-SNAPSHOT</version>
-
+    <packaging>jar</packaging>
     <name>dummy-sample-rest-test</name>
     <url>https://github.com/JormanRincon08/dummy-sample-rest-test</url>
 
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <serenity.version>2.3.4</serenity.version>
-        <serenity.maven.version>2.3.4</serenity.maven.version>
+        <serenity.version>3.3.1</serenity.version>
+        <serenity.maven.version>3.3.1</serenity.maven.version>
+        <serenity.cucumber.version>3.3.1</serenity.cucumber.version>
+        <slf4j.version>1.7.36</slf4j.version>
+        <junit.version>4.13.2</junit.version>
+        <hamcrest.version>1.3</hamcrest.version>
+        <javafaker.version>1.0.2</javafaker.version>
+        <json-schema-validator.version>5.1.1</json-schema-validator.version>
         <encoding>UTF-8</encoding>
         <tags></tags>
         <parallel.tests>4</parallel.tests>
-        <hibernate.version>5.2.10.Final</hibernate.version>
-        <restapi.baseurl>https://dummy.restapiexample.com/api/v1</restapi.baseurl>
     </properties>
 
     <repositories>
@@ -31,6 +35,11 @@
             <id>central</id>
             <name>bintray</name>
             <url>https://jcenter.bintray.com</url>
+        </repository>
+        <repository>
+            <id>maven_central</id>
+            <name>Maven Central</name>
+            <url>https://repo.maven.apache.org/maven2/</url>
         </repository>
     </repositories>
 
@@ -47,24 +56,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>5.4.1.Final</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>5.4.1.Final</version>
-        </dependency>
-        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
-            <version>1.7.7</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>23.6-jre</version>
+            <version>${slf4j.version}</version>
         </dependency>
         <dependency>
             <groupId>net.serenity-bdd</groupId>
@@ -88,40 +82,29 @@
         </dependency>
         <dependency>
             <groupId>net.serenity-bdd</groupId>
-            <artifactId>serenity-ensure</artifactId>
-            <version>${serenity.version}</version>
+            <artifactId>serenity-cucumber</artifactId>
+            <version>${serenity.cucumber.version}</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>net.serenity-bdd</groupId>
-            <artifactId>serenity-cucumber6</artifactId>
-            <version>${serenity.version}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
-        </dependency>
-        <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
-            <version>3.6.2</version>
+            <version>${junit.version}</version>
         </dependency>
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-all</artifactId>
-            <version>1.3</version>
+            <version>${hamcrest.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.10</version>
-            <scope>provided</scope>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>${javafaker.version}</version>
         </dependency>
         <dependency>
-            <groupId>net.serenity-bdd</groupId>
-            <artifactId>serenity-single-page-report</artifactId>
-            <version>2.1.2</version>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>json-schema-validator</artifactId>
+            <version>${json-schema-validator.version}</version>
         </dependency>
     </dependencies>
     <build>
@@ -129,26 +112,21 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.20</version>
+                <version>3.0.0-M5</version>
                 <configuration>
-                    <argLine>-Xmx1024m -XX:MaxPermSize=512m</argLine>
                     <skip>true</skip>
-                    <skipTests>true</skipTests>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.18.1</version>
+                <version>3.0.0-M5</version>
                 <configuration>
                     <includes>
                         <include>**/*Test.java</include>
-                        <include>**/features/**/*.java</include>
-                        <include>**/*Test*.java</include>
                     </includes>
-                    <systemPropertyVariables>
-                        <restapi.baseurl>${restapi.baseurl}</restapi.baseurl>
-                    </systemPropertyVariables>
+                    <parallel>methods</parallel>
+                    <useUnlimitedThreads>true</useUnlimitedThreads>
                 </configuration>
                 <executions>
                     <execution>
@@ -160,51 +138,31 @@
                 </executions>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>net.serenity-bdd.maven.plugins</groupId>
                 <artifactId>serenity-maven-plugin</artifactId>
                 <version>${serenity.maven.version}</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>net.serenity-bdd</groupId>
-                        <artifactId>serenity-core</artifactId>
-                        <version>${serenity.version}</version>
-                    </dependency>
-                </dependencies>
+                <configuration>
+                    <tags>${tags}</tags>
+                </configuration>
                 <executions>
                     <execution>
                         <id>serenity-reports</id>
                         <phase>post-integration-test</phase>
                         <goals>
                             <goal>aggregate</goal>
-                            <goal>reports</goal>
                         </goals>
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.7.0</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
-    <profiles>
-        <profile>
-            <id>dev</id>
-            <properties>
-                <restapi.baseurl>https://dummy.restapiexample.com/api/v1</restapi.baseurl>
-            </properties>
-        </profile>
-        <profile>
-            <id>qa</id>
-            <properties>
-                <restapi.baseurl>https://dummy.restapiexample.com/api/v1</restapi.baseurl>
-            </properties>
-        </profile>
-    </profiles>
-
 </project>

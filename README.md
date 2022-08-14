@@ -62,7 +62,7 @@ Gherkin y traduce esas definiciones a código Java.
 Compilador
 ---
 Se crea el proyecto sobre Maven, es una herramienta de desarrollo de software que actúa como un sistema sólido de
-gestión de dependencias, PENDIENTE.
+gestión de dependencias.
 
 ### Nomenclatura en el desarrollo
 ---
@@ -88,8 +88,8 @@ Prácticas de automatización
   [screenplay](http://thucydides.info/docs/serenity-staging/#_serenity_and_the_screenplay_pattern) con cucumber y
   gradle.
 
-Los tests usan tareas (tasks), interacciones (interactions), preguntas (questions), elementos de páginas (
-user_interface) y básicamente se tiene la siguiente estructura a nivel de proyecto de automatización.
+Los tests usan tareas (tasks), interacciones (interactions), preguntas (questions), objetos y/o elementos de páginas
+(user_interface) y básicamente se tiene la siguiente estructura a nivel de proyecto de automatización.
 
 + **Model:**
   Son las clases necesarias para crear abstracciones de objetos complejos del negocio como lo son, por ejemplo:
@@ -144,9 +144,8 @@ Para comenzar
     serenity.properties
     ```
 
-2. En el presente proyecto no se debe tener en cuenta que como se está realizando una automarización a nivel de APIS,
+2. En el presente proyecto se debe tener en cuenta que como se está realizando una automarización a nivel de APIS,
    el paquete **"userinterface"** no estará presente en el actual proyecto.
-
 
 **¿Cómo ejecutar las pruebas?**
 
@@ -168,4 +167,6 @@ Para comenzar
         mvn test --tests NombreRunner --info
         Nota: el parámetro NombreRunner, es el nombre del runner de la prueba a ejecutar
 
+4. Para obtener el reporte de Serenity se debe indicar el comando:
 
+        mvn serenity:aggregate
