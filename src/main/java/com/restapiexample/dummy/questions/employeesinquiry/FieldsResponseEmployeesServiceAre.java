@@ -1,4 +1,4 @@
-package com.restapiexample.dummy.questions.employees;
+package com.restapiexample.dummy.questions.employeesinquiry;
 
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Question;
@@ -24,9 +24,9 @@ public class FieldsResponseEmployeesServiceAre implements Question<Boolean> {
                                 .assertThat()
                                 .body("$", Matchers.hasKey("data"))
                                 .and().body(KEY_FIRST_EMPLOYEES_DATA, Matchers.hasKey(KEY_ID_EMPLOYEE))
-                                .and().body(KEY_FIRST_EMPLOYEES_DATA, Matchers.hasKey(KEY_EMPLOYEE_NAME))
-                                .and().body(KEY_FIRST_EMPLOYEES_DATA, Matchers.hasKey(KEY_EMPLOYEE_SALARY))
-                                .and().body(KEY_FIRST_EMPLOYEES_DATA, Matchers.hasKey(KEY_EMPLOYEE_AGE))
+                                .and().body(KEY_FIRST_EMPLOYEES_DATA, Matchers.hasKey(KEY_EMPLOYEES_NAME))
+                                .and().body(KEY_FIRST_EMPLOYEES_DATA, Matchers.hasKey(KEY_EMPLOYEES_SALARY))
+                                .and().body(KEY_FIRST_EMPLOYEES_DATA, Matchers.hasKey(KEY_EMPLOYEES_AGE))
                                 .and().body(KEY_FIRST_EMPLOYEES_DATA, Matchers.hasKey(KEY_PROFILE_IMAGE))
                 )
         );

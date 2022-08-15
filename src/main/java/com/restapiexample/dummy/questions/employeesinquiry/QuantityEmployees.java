@@ -1,4 +1,4 @@
-package com.restapiexample.dummy.questions.employees;
+package com.restapiexample.dummy.questions.employeesinquiry;
 
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Question;
