@@ -12,7 +12,7 @@ import static net.serenitybdd.screenplay.Tasks.instrumented;
 
 public class ExecuteGet implements Interaction {
 
-    private String resource;
+    private final String resource;
 
     public ExecuteGet(String resource) {
         this.resource = resource;

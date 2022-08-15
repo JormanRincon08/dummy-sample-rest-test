@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "salary": {
+          "type": "string"
+        },
+        "age": {
+          "type": "string"
+        },
+        "profile_image": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "salary",
+        "age",
+        "profile_image"
+      ]
+    },
+    "message": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "status",
+    "data",
+    "message"
+  ]
+}

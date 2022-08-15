@@ -45,6 +45,6 @@ public class CreateEmployeeStepDefinition {
 
     @Then("he validates fields values post create response employee api")
     public void heValidatesFieldsValuesPostCreateResponseEmployeeApi() {
-        theActorInTheSpotlight().should(seeThat(FieldsValuesResponseCreateEmployeeServiceAre.expected()).orComplainWith(AssertionServicesError.class, FIELDS_ERROR_MESSAGE));
+        theActorInTheSpotlight().should(seeThat(FieldsValuesResponseCreateEmployeeServiceAre.expected()).orComplainWith(AssertionServicesError.class, FIELDS_VALUES_ERROR_MESSAGE));
     }
 }
