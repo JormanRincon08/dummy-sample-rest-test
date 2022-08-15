@@ -15,6 +15,7 @@ public abstract class Manager {
     public static final String KEY_EMPLOYEE_AGE = "age";
     public static final String KEY_PROFILE_IMAGE = "profile_image";
 
+    public static final String REPORT_TITLE_PUT_SERVICE = "Put service employee";
 
     public static final String STATUS_SUCCESS_MESSAGE = "success";
     public static final String GET_SUCCESS_MESSAGE = "Successfully! Record has been fetched.";
