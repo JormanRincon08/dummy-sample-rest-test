@@ -20,7 +20,7 @@ public class EmployeeInquiry implements Task {
     }
 
     @Override
-    @Step("{0} consume service /employee")
+    @Step("{0} consume service /employee/{id}")
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(ExecuteGetParameters.service(endpointResource).withParameter(CurrentEmployee.getEmployeeId()));
     }
