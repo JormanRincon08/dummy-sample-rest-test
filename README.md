@@ -2,9 +2,8 @@
 
 API Dummy Rest Examples
 -----
-El proyecto de pruebas automatizadas está implementado con la librería Serenity en su versión xxxxx utilizando el patrón
-de diseño
-ScreenPlay con las versiones actualizadas a Cucumber6 versión xxxxx para el proyecto de Dummy API Rest.
+El proyecto de pruebas automatizadas está implementado con la librería Serenity en su versión 3.3.1 utilizando el patrón
+de diseño ScreenPlay con las versiones actualizadas a Cucumber en su versión 3.3.1 para el proyecto de Dummy API Rest.
 
 Se realizan validaciones a través de los diferentes endpoints relacionados con los
 siguientes procesos:
@@ -24,20 +23,20 @@ Se utiliza BDD como framework de automatización para la automatización de los 
 las pruebas antes de escribir el código fuente, pero en lugar de pruebas unitarias, lo que haremos será escribir pruebas
 que verifiquen que el comportamiento del código es correcto desde el punto de vista de negocio. Tras escribir las
 pruebas escribimos el código fuente de la funcionalidad que haga que estas pruebas pasen correctamente. Después se
-refactoriza el código fuente. partimos de historias de usuario, siguiendo el modelo “Como [rol ]
-quiero [ característica ] para que [los beneficios]”. A partir de aquí, en lugar de describir en 'lenguaje natural' lo
+refactoriza el código fuente. partimos de historias de usuario, siguiendo el modelo “Como [ rol ]
+quiero [ característica ] para que [ los beneficios ]”. A partir de aquí, en lugar de describir en 'lenguaje natural' lo
 que tiene que hacer esa nueva funcionalidad, vamos a usar un lenguaje que nos va a permitir describir todas nuestras
 funcionalidades de una misma forma, un lenguaje específico para BDD.
 
 ### Gherkin
 
 Se utiliza Gherkin como lenguaje de desarrollo de las funcionalidades dado que es un lenguaje que es natural y por ende
-es comprensible por humanos y por ordenadores, con el se define el comportamiento de la aplicación que se va a
-automatizar. Se trata de un lenguaje fácil de leer, fácil de entender y fácil de escribir. Utilizar Gherkin permite
+es comprensible por humanos y por ordenadores, con él se define el comportamiento de la aplicación que se va a
+automatizar. Se trata de un lenguaje fácil de leer, fácil de entender y fácil de escribir. Usar Gherkin permite
 crear una documentación viva a la vez que automatizamos los tests, haciéndolo además con un lenguaje que puede entender
 negocio.
 
-La ventaja de Gherkin es que se empieza haciendo BDD y para ello sólo nos hace falta conocer 5 palabras con las que
+La ventaja de Gherkin es que se empieza haciendo BDD y para ello solo nos hace falta conocer 5 palabras con las que
 construiremos sentencias con las que vamos a describir las funcionalidades:
 
 - **Feature:** Indica el nombre de la funcionalidad que vamos a probar. Debe ser un título claro y explícito. Incluimos
@@ -55,16 +54,16 @@ construiremos sentencias con las que vamos a describir las funcionalidades:
 
 ### Cucumber
 
-Se utiliza cucumber como herramienta para para automatizar las pruebas en BDD. Cucumber nos va permitir ejecutar
+Se utiliza cucumber como herramienta para para automatizar las pruebas en BDD. Cucumber nos va a permitir ejecutar
 descripciones funcionales en texto plano como pruebas de software automatizadas. Totalmente compatible con el lenguaje
 Gherkin y traduce esas definiciones a código Java.
 
 Compilador
 ---
 Se crea el proyecto sobre Maven, es una herramienta de desarrollo de software que actúa como un sistema sólido de
-gestión de dependencias.
+gestión de dependencias el cual también es muy util para el proceso de buid del código permitiendo compilar la solución comprobando que el código es correcto.
 
-### Nomenclatura en el desarrollo
+Nomenclatura en el desarrollo
 ---
 Para el desarrollo de la automatización se utilizaron las siguientes formas de nomenclatura para cada uno de los
 artefactos:
@@ -84,9 +83,6 @@ Prácticas de automatización
 - Writting User-centric tests using Serenity Screenplay
     - [Screenplay](https://serenity-bdd.github.io/theserenitybook/latest/serenity-screenplay.html)
 - Uso de version con Cucumber6 - [Cucumber 6](https://github.com/serenity-bdd/serenity-cucumber6)
-- Un proyecto donde se ejemplifica el uso del patrón serenity
-  [screenplay](http://thucydides.info/docs/serenity-staging/#_serenity_and_the_screenplay_pattern) con cucumber y
-  gradle.
 
 Los tests usan tareas (tasks), interacciones (interactions), preguntas (questions), objetos y/o elementos de páginas
 (user_interface) y básicamente se tiene la siguiente estructura a nivel de proyecto de automatización.
@@ -120,7 +116,7 @@ Los tests usan tareas (tasks), interacciones (interactions), preguntas (question
   Clases que permiten realizar las consultas correspondientes a la integración de aplicaciones terceras (No aplica para
   el presente proyecto).
 + **Util:**
-  Es una capa la cual contiene clases que tienen métodos que pueden ser reusables dentro del proyecto y que puede ser
+  Es una capa la cual contiene clases que tienen métodos que pueden ser reutilizables dentro del proyecto y que puede ser
   utilizados en cualquier otra capa como por ejemplo los métodos de espera, una conexión a base de datos o una lectura
   de un archivo plano.
 
@@ -149,24 +145,16 @@ Para comenzar
 
 **¿Cómo ejecutar las pruebas?**
 
-1. Modificar la task **test** para incluir o excluir los runners en el archivo:
-
-        pom.xml
-
-   Para incluir test runners que deben ejecutarse, la lista de test runners esta ubicada en paquete
-
-        java/com/restapiexample/dummy/runners
-
-2. Ejecutar task de maven con comandos:
+1. Ejecutar task de maven con los comandos:
 
         ./mvn clean test --info (LINUX)
         mvn clean test --info (WINDOWS)
 
-3. Para ejecutar un test en específico
+2. Para ejecutar un test en específico
 
         mvn test --tests NombreRunner --info
         Nota: el parámetro NombreRunner, es el nombre del runner de la prueba a ejecutar
 
-4. Para obtener el reporte de Serenity se debe indicar el comando:
+3. Para obtener el reporte de Serenity se debe indicar el comando:
 
         mvn serenity:aggregate

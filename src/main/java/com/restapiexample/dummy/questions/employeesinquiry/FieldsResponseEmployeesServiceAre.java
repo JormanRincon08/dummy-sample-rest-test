@@ -22,12 +22,14 @@ public class FieldsResponseEmployeesServiceAre implements Question<Boolean> {
                 seeThatResponse("Validation fields get employees service",
                         response -> response
                                 .assertThat()
-                                .body("$", Matchers.hasKey("data"))
+                                .and().body(ROOT_JSON_PATH, Matchers.hasKey(KEY_STATUS_PATH))
+                                .and().body(ROOT_JSON_PATH, Matchers.hasKey(KEY_EMPLOYEE_DATA))
                                 .and().body(KEY_FIRST_EMPLOYEES_DATA, Matchers.hasKey(KEY_ID_EMPLOYEE))
                                 .and().body(KEY_FIRST_EMPLOYEES_DATA, Matchers.hasKey(KEY_EMPLOYEES_NAME))
                                 .and().body(KEY_FIRST_EMPLOYEES_DATA, Matchers.hasKey(KEY_EMPLOYEES_SALARY))
                                 .and().body(KEY_FIRST_EMPLOYEES_DATA, Matchers.hasKey(KEY_EMPLOYEES_AGE))
                                 .and().body(KEY_FIRST_EMPLOYEES_DATA, Matchers.hasKey(KEY_PROFILE_IMAGE))
+                                .and().body(ROOT_JSON_PATH, Matchers.hasKey(KEY_MESSAGE_PATH))
                 )
         );
         return true;

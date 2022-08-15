@@ -1,7 +1,6 @@
 package com.restapiexample.dummy.models;
 
 import lombok.Getter;
-import net.serenitybdd.core.Serenity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,17 +21,16 @@ public class CurrentEmployee {
     private CurrentEmployee() {
     }
 
-    public static void loadDataForEmployee(List<String> data) {
-        withEmployee(data);
+    public static void loadIdFrom(String employeeId) {
+        CurrentEmployee.employeeId = employeeId;
     }
 
-    public static void withEmployee(List<String> data) {
+    public static void load(List<String> data) {
         List<String> requestData = new ArrayList<>();
         requestData.add(data.get(1));
         requestData.add(data.get(2));
         requestData.add(data.get(3));
         requestData.add(data.get(4));
-        Serenity.setSessionVariable("EmployeeData").to(requestData);
         CurrentEmployee.employeeBodyData = requestData;
         CurrentEmployee.employeeMapData = createEmployeeMapData(data);
         CurrentEmployee.employeeId = data.get(0);
