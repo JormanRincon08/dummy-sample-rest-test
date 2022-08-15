@@ -1,6 +1,7 @@
 Feature: Employees inquiry
   As a user,
-  I want to search the information of all the employees through the dummy api example services.
+  I want to search the information of all the employees through the dummy api example services
+  for list all employees information
 
   @getAllEmployees
   Scenario: Successful employees inquiry through dummy api example services

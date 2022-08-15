@@ -3,6 +3,7 @@ package com.restapiexample.dummy.interactions;
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Interaction;
+import net.serenitybdd.screenplay.Performable;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,10 +23,6 @@ public class PrepareBodyRequest implements Interaction {
     public PrepareBodyRequest(String name, List<String> data) {
         this.jsonName = name;
         this.jsonData = data;
-    }
-
-    public static PrepareBodyRequest with(String name, List<String> data) {
-        return instrumented(PrepareBodyRequest.class, name, data);
     }
 
     @Override
@@ -48,5 +45,21 @@ public class PrepareBodyRequest implements Interaction {
 
     public static String jsonPreparedData(String json, List<String> data) {
         return String.format(json, data.toArray());
+    }
+
+    public static PrepareBodyBuilder in(String name) {
+        return new PrepareBodyBuilder(name);
+    }
+
+    public static class PrepareBodyBuilder {
+        private final String jsonName;
+
+        public PrepareBodyBuilder(String jsonName) {
+            this.jsonName = jsonName;
+        }
+
+        public Performable with(List<String> data) {
+            return instrumented(PrepareBodyRequest.class, jsonName, data);
+        }
     }
 }

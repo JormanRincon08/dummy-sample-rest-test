@@ -45,6 +45,7 @@ public class FieldsValuesResponseEditEmployeeServiceAre implements Question<Bool
         Map<String, Object> found = getFound(jsonPathResponse);
 
         List<Boolean> verifications = new ArrayList<>();
+        verifications.add(compareDifferences(CODE_STATUS_SUCCESS_MESSAGE, String.valueOf(lastResponse().getStatusCode()), "Code status"));
         verifications.add(compareDifferences(STATUS_SUCCESS_MESSAGE, jsonPathResponse.getString(KEY_STATUS_PATH), "Status"));
         verifications.add(compareDifferences(PUT_SUCCESS_MESSAGE, jsonPathResponse.getString(KEY_MESSAGE_PATH), "Message"));
         verifications.add(compareDifferences(expected.get(KEY_EMPLOYEE_NAME), found.get(KEY_EMPLOYEE_NAME), "Employee name"));

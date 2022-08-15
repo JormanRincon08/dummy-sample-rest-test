@@ -36,8 +36,7 @@ public class CreateEmployee implements Task {
                 .name(String.format("%s %s", employeeFaker.name().firstName(), employeeFaker.name().lastName()))
                 .salary(employeeFaker.number().randomNumber(5, true))
                 .age(employeeFaker.number().numberBetween(18, 90))
-                .profile_image(employeeFaker.avatar().image())
+                .profileImage(employeeFaker.avatar().image())
                 .build();
     }
-
 }

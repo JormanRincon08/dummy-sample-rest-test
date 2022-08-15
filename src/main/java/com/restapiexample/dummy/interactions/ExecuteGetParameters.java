@@ -1,38 +1,35 @@
 package com.restapiexample.dummy.interactions;
 
 import io.restassured.http.ContentType;
-import net.serenitybdd.core.steps.Instrumented;
 import net.serenitybdd.rest.SerenityRest;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Interaction;
 import net.serenitybdd.screenplay.Performable;
-import net.serenitybdd.screenplay.rest.interactions.Put;
+import net.serenitybdd.screenplay.rest.interactions.Get;
 import net.thucydides.core.annotations.Step;
 
 import static net.serenitybdd.rest.SerenityRest.lastResponse;
+import static net.serenitybdd.screenplay.Tasks.instrumented;
 
-public class ExecutePut implements Interaction {
+public class ExecuteGetParameters implements Interaction {
 
     private final String resource;
     private final String id;
-    private final String body;
 
-    public ExecutePut(String resource, String id, String body) {
+    public ExecuteGetParameters(String resource, String id) {
         this.resource = resource;
         this.id = id;
-        this.body = body;
     }
 
-    @Step("{0} executes a PUT on the resource #resource with id #id")
+    @Step("{0} executes a GET on the resource #resource with id #id")
     @Override
     public <T extends Actor> void performAs(T actor) {
         SerenityRest.reset();
         SerenityRest.useRelaxedHTTPSValidation();
-        actor.attemptsTo(Put.to(resource)
+        actor.attemptsTo(Get.resource(resource)
                 .with(request -> request
                         .contentType(ContentType.JSON)
                         .pathParam("id", id)
-                        .body(body)
                         .log()
                         .all()
                 )
@@ -40,26 +37,19 @@ public class ExecutePut implements Interaction {
         lastResponse().peek();
     }
 
-    public static PutServiceBuilder service(String resource) {
-        return new PutServiceBuilder(resource);
+    public static GetServiceBuilder service(String resource) {
+        return new GetServiceBuilder(resource);
     }
 
-    public static class PutServiceBuilder {
+    public static class GetServiceBuilder {
         private final String resource;
-        private String id;
 
-        public PutServiceBuilder(String resource) {
+        public GetServiceBuilder(String resource) {
             this.resource = resource;
         }
 
-        public PutServiceBuilder withId(String id) {
-            this.id = id;
-            return this;
-        }
-
-        public Performable andBody(String body) {
-            return Instrumented.instanceOf(ExecutePut.class).withProperties(resource, id, body);
+        public Performable withParameter(String id) {
+            return instrumented(ExecuteGetParameters.class, resource, id);
         }
     }
-
 }

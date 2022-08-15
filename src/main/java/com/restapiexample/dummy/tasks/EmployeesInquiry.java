@@ -8,7 +8,7 @@ import net.thucydides.core.annotations.Step;
 import static net.serenitybdd.screenplay.Tasks.instrumented;
 
 public class EmployeesInquiry implements Task {
-    private String endpointResource;
+    private final String endpointResource;
 
     public EmployeesInquiry(String endpointResource) {
         this.endpointResource = endpointResource;

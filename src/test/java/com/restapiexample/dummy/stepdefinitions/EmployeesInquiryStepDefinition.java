@@ -2,9 +2,9 @@ package com.restapiexample.dummy.stepdefinitions;
 
 import com.restapiexample.dummy.exceptions.AssertionServicesError;
 import com.restapiexample.dummy.questions.employeesinquiry.FieldsResponseEmployeesServiceAre;
-import com.restapiexample.dummy.questions.employeesinquiry.QuantityEmployees;
 import com.restapiexample.dummy.questions.common.Schema;
 import com.restapiexample.dummy.questions.common.StatusCodeResponse;
+import com.restapiexample.dummy.questions.employeesinquiry.QuantityEmployees;
 import com.restapiexample.dummy.tasks.EmployeesInquiry;
 import com.restapiexample.dummy.utils.resources.WebServicesEndPoints;
 import io.cucumber.java.en.Given;

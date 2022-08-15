@@ -7,6 +7,7 @@ import net.serenitybdd.screenplay.Task;
 
 import java.util.List;
 
+import static com.restapiexample.dummy.utils.constants.Manager.BODY_SCHEMA_PUT_SERVICE;
 import static net.serenitybdd.screenplay.Tasks.instrumented;
 
 public class LoadBodyData implements Task {
@@ -23,7 +24,7 @@ public class LoadBodyData implements Task {
 
     @Override
     public <T extends Actor> void performAs(T actor) {
-        CurrentEmployee.loadDataForEmployee(data);
-        actor.attemptsTo(PrepareBodyRequest.with("bodyschemas/edit_employee.json", CurrentEmployee.getEmployeeBodyData()));
+        CurrentEmployee.load(data);
+        actor.attemptsTo(PrepareBodyRequest.in(BODY_SCHEMA_PUT_SERVICE).with(CurrentEmployee.getEmployeeBodyData()));
     }
 }
