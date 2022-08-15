@@ -22,7 +22,7 @@ public class EditEmployee implements Task {
     }
 
     @Override
-    @Step("{0} consume service /edit")
+    @Step("{0} consume service /update/{id}")
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(ExecutePut.service(endpointResource).withId(CurrentEmployee.getEmployeeId()).andBody(Serenity.sessionVariableCalled("Request").toString()));
     }
