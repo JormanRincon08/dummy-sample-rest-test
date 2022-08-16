@@ -152,7 +152,7 @@ Para comenzar
 
 2. Para ejecutar un test en específico
 
-        mvn test --tests NombreRunner --info
+        mvn test -Dtest=NombreRunner
         Nota: el parámetro NombreRunner, es el nombre del runner de la prueba a ejecutar
 
 3. Para obtener el reporte de Serenity se debe indicar el comando:
