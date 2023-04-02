@@ -1,6 +1,6 @@
 package com.restapiexample.dummy.models;
 
-import lombok.Getter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,6 +9,7 @@ import java.util.Map;
 
 import static com.restapiexample.dummy.utils.constants.Manager.*;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CurrentEmployee {
 
     @Getter
@@ -17,9 +18,6 @@ public class CurrentEmployee {
     private static String employeeId;
     @Getter
     private static Map<String, Object> employeeMapData;
-
-    private CurrentEmployee() {
-    }
 
     public static void loadIdFrom(String employeeId) {
         CurrentEmployee.employeeId = employeeId;
